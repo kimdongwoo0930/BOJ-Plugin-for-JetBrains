@@ -11,8 +11,8 @@
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow.MyToolWindowFactory"
                     id="BOJ"
-                    displayName="BOJ"
-                    />
+                    displayName="BOJ"/>
+        <fileEditorProvider implementation="com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow.ProblemViewerProvider"/>
         <postStartupActivity implementation="com.github.kimdongwoo0930.bojpluginforjetbrains.startup.MyProjectActivity" />
     </extensions>
 </idea-plugin>

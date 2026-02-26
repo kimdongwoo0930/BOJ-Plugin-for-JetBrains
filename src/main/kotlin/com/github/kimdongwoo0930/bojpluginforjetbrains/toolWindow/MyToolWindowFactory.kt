@@ -1,5 +1,6 @@
 package com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow
 
+import com.github.kimdongwoo0930.bojpluginforjetbrains.commands.getProblemByNumber
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
@@ -38,7 +39,9 @@ class BOJToolWindow(private val project: Project) {
 
         // 문제 생성 섹션
         add(sectionLabel("📄 문제 생성"))
-        add(actionButton("+ 새 문제 시작하기") { /* TODO */ })
+        add(actionButton("+ 새 문제 시작하기") {
+            getProblemByNumber(project)
+        })
         add(descLabel("문제 번호만 입력하면 폴더 + 파일 자동 생성"))
         add(Box.createVerticalStrut(24))
         add(divider())
