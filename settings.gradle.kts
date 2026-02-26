@@ -2,4 +2,4 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-rootProject.name = "BOJ-Plugin-for-JetBrains"
+rootProject.name = "BOJ-for-JetBrains"
