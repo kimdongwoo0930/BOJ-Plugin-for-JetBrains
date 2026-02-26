@@ -1,45 +1,50 @@
 package com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow
 
-import com.intellij.openapi.components.service
-import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
-import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.content.ContentFactory
-import com.github.kimdongwoo0930.bojpluginforjetbrains.MyBundle
-import com.github.kimdongwoo0930.bojpluginforjetbrains.services.MyProjectService
+import java.awt.GridLayout
 import javax.swing.JButton
-
+import javax.swing.border.EmptyBorder
 
 class MyToolWindowFactory : ToolWindowFactory {
 
-    init {
-        thisLogger().warn("Don't forget to remove all non-needed sample code files with their corresponding registration entries in `plugin.xml`.")
-    }
-
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val myToolWindow = MyToolWindow(toolWindow)
-        val content = ContentFactory.getInstance().createContent(myToolWindow.getContent(), null, false)
+        val panel = BOJToolWindow(project).getContent()
+        val content = ContentFactory.getInstance().createContent(panel, null, false)
         toolWindow.contentManager.addContent(content)
     }
 
     override fun shouldBeAvailable(project: Project) = true
+}
 
-    class MyToolWindow(toolWindow: ToolWindow) {
+class BOJToolWindow(private val project: Project) {
 
-        private val service = toolWindow.project.service<MyProjectService>()
+    fun getContent() = JBPanel<JBPanel<*>>().apply {
+        layout = GridLayout(5, 1, 0, 8)
+        border = EmptyBorder(16, 16, 16, 16)
 
-        fun getContent() = JBPanel<JBPanel<*>>().apply {
-            val label = JBLabel(MyBundle.message("randomLabel", "?"))
-
-            add(label)
-            add(JButton(MyBundle.message("shuffle")).apply {
-                addActionListener {
-                    label.text = MyBundle.message("randomLabel", service.getRandomNumber())
-                }
-            })
-        }
+        add(JButton("📝 새 문제 시작하기").apply {
+            cursor = java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)
+            addActionListener { /* TODO: 문제 번호 입력 */ }
+        })
+        add(JButton("👁️ 문제만 먼저 보기").apply {
+            cursor = java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)
+            addActionListener { /* TODO: 파일 없이 문제 보기 */ }
+        })
+        add(JButton("🧪 예제로 채점하기").apply {
+            cursor = java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)
+            addActionListener { /* TODO: 테스트 케이스 실행 */ }
+        })
+        add(JButton("📂 문제 다시 열기").apply {
+            cursor = java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)
+            addActionListener { /* TODO: 문제 다시 보기 */ }
+        })
+        add(JButton("🚀 제출하기").apply {
+            cursor = java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)
+            addActionListener { /* TODO: 제출 */ }
+        })
     }
 }

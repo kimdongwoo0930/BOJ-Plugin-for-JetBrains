@@ -1,15 +1,18 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.kimdongwoo0930.bojpluginforjetbrains</id>
-    <name>BOJ-Plugin-for-kimdongwoo0930</name>
-    <vendor>kimdongwoo0930</vendor>
+    <name>BOJ Plugin for JetBrains</name>
+    <vendor url="https://github.com/kimdongwoo0930">kimdongwoo0930</vendor>
+    <description>백준 온라인 저지(BOJ)를 JetBrains IDE에서 사용할 수 있는 플러그인</description>
 
     <depends>com.intellij.modules.platform</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow factoryClass="com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow.MyToolWindowFactory"
+                    id="BOJ"
+                    displayName="BOJ"
+                    icon="/icons/icon.svg"/>
         <postStartupActivity implementation="com.github.kimdongwoo0930.bojpluginforjetbrains.startup.MyProjectActivity" />
     </extensions>
 </idea-plugin>
