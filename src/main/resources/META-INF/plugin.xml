@@ -12,7 +12,7 @@
         <toolWindow factoryClass="com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow.MyToolWindowFactory"
                     id="BOJ"
                     displayName="BOJ"
-                    icon="/icons/icon.svg"/>
+                    />
         <postStartupActivity implementation="com.github.kimdongwoo0930.bojpluginforjetbrains.startup.MyProjectActivity" />
     </extensions>
 </idea-plugin>
