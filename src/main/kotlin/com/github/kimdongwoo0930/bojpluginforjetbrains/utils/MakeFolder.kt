@@ -31,7 +31,10 @@ fun makeFolder(
     problemFolder.mkdirs()
 
     // 코드 파일 생성 - 이미 존재하면 건너뜀
-    val codeFile = File("${problemFolder.path}/Main.$langExt")
+    // 파일의 이름명르 정해 가져오기
+
+    val codeFile = File(selectFileName(problemFolder, langExt))
+
     if (!codeFile.exists()) {
         codeFile.writeText(buildTemplate(problemNumber, problemData.title, langExt))
     }
@@ -67,6 +70,17 @@ fun makeFolder(
                 val newWindow = currentWindow?.split(javax.swing.SwingConstants.VERTICAL, true, htmlVFile, true)
             }
         }
+    }
+}
+/**
+ * 언어별 파일명 생성하는 함수
+ */
+private fun selectFileName(problemFolder : File, langExt: String): String {
+    if(langExt == "java") {
+        return "${problemFolder.path}/Main.$langExt"
+    }
+    else{
+        return "${problemFolder.path}/app.$langExt"
     }
 }
 
@@ -120,7 +134,7 @@ input = sys.stdin.readline
  * 문제 데이터를 HTML로 변환하는 함수
  * VSCode의 getHtml 함수와 동일한 역할
  */
-private fun buildHtml(problemData: ProblemData): String {
+internal fun buildHtml(problemData: ProblemData): String {
     return """
         <!DOCTYPE html>
         <html>
@@ -156,7 +170,7 @@ private fun buildHtml(problemData: ProblemData): String {
 /**
  * 테스트 케이스 HTML을 생성하는 함수
  */
-private fun buildTestCases(problemData: ProblemData): String {
+internal fun buildTestCases(problemData: ProblemData): String {
     val sb = StringBuilder()
     for (i in problemData.testCaseInputs.indices) {
         sb.append("<h2>예제 입력 ${i + 1}</h2>")

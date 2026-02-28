@@ -1,6 +1,9 @@
 package com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow
 
+import com.github.kimdongwoo0930.bojpluginforjetbrains.commands.checkTestCase
 import com.github.kimdongwoo0930.bojpluginforjetbrains.commands.getProblemByNumber
+import com.github.kimdongwoo0930.bojpluginforjetbrains.commands.previewProblem
+import com.github.kimdongwoo0930.bojpluginforjetbrains.commands.reopenProblem
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
@@ -19,7 +22,7 @@ class MyToolWindowFactory : ToolWindowFactory {
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val panel = BOJToolWindow(project).getContent()
-        val content = ContentFactory.getInstance().createContent(panel, null, false)
+        val content = ContentFactory.getInstance().createContent(panel, "메뉴", false)
         toolWindow.contentManager.addContent(content)
     }
 
@@ -48,7 +51,7 @@ class BOJToolWindow(private val project: Project) {
 
         // 빠른 미리보기 섹션
         add(sectionLabel("👁️ 빠른 미리보기"))
-        add(actionButton("문제만 먼저 보기") { /* TODO */ })
+        add(actionButton("문제만 먼저 보기") { previewProblem(project) })
         add(descLabel("파일 생성 없이 문제 내용만 확인"))
         add(Box.createVerticalStrut(24))
         add(divider())
@@ -56,7 +59,7 @@ class BOJToolWindow(private val project: Project) {
 
         // 코드 테스트 섹션
         add(sectionLabel("🧪 코드 테스트"))
-        add(actionButton("예제로 채점하기") { /* TODO */ })
+        add(actionButton("예제로 채점하기") { checkTestCase(project) })
         add(descLabel("작성한 코드를 백준 예제로 자동 테스트"))
         add(Box.createVerticalStrut(24))
         add(divider())
@@ -64,7 +67,7 @@ class BOJToolWindow(private val project: Project) {
 
         // 작업 재개 섹션
         add(sectionLabel("📂 작업 재개"))
-        add(actionButton("문제 다시 열기") { /* TODO */ })
+        add(actionButton("문제 다시 열기") { reopenProblem(project) })
         add(descLabel("현재 작업 중인 문제 빠르게 확인"))
         add(Box.createVerticalStrut(24))
         add(divider())
