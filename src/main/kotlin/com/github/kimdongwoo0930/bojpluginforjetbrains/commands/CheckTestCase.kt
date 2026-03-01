@@ -139,7 +139,7 @@ private fun runTestCase(
     val isWin = System.getProperty("os.name").lowercase().contains("win")
 
 //    consoleView.print("DEBUG input: [${input.replace("\n", "\\n")}]\n", ConsoleViewContentType.SYSTEM_OUTPUT)
-//    consoleView.print("DEBUG input: [${input.replace("\n", "\\n")}]\n", ConsoleViewContentType.SYSTEM_OUTPUT)
+//    consoleView.print("DEBUG input: [${input}]", ConsoleViewContentType.SYSTEM_OUTPUT)
 
 
     return try {
@@ -151,7 +151,7 @@ private fun runTestCase(
                 val className = File(filePath).nameWithoutExtension
 
                 // 컴파일
-                val compileProcess = ProcessBuilder("javac", "-encoding", "UTF-8", fileName)
+                val compileProcess = ProcessBuilder("javac", "-encoding", "UTF-8", "-cp", ".", fileName)
                     .directory(File(cwd))
                     .redirectErrorStream(true)
                     .start()
@@ -172,7 +172,7 @@ private fun runTestCase(
                 }
 
                 // 실행
-                ProcessBuilder("java", className)
+                ProcessBuilder("java", "-cp", ".", className)
                     .directory(File(cwd))
                     .redirectErrorStream(false)
                     .start()
@@ -189,9 +189,6 @@ private fun runTestCase(
             else -> return false
         }
 
-        // 입력 전달
-        // 입력 전달
-        // 입력 전달
         // 입력 전달
         process.outputStream.write(input.toByteArray(Charsets.UTF_8))
         process.outputStream.flush()

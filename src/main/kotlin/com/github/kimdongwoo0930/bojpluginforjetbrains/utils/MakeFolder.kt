@@ -65,9 +65,19 @@ fun makeFolder(
             }
             if (htmlVFile != null) {
                 htmlVFile.refresh(false, false)
-                // 오른쪽 분할 창에 열기
-                val currentWindow = editorManager.currentWindow
-                val newWindow = currentWindow?.split(javax.swing.SwingConstants.VERTICAL, true, htmlVFile, true)
+                try {
+                    val currentWindow = editorManager.currentWindow
+                    currentWindow?.split(javax.swing.SwingConstants.VERTICAL, true, htmlVFile, true)
+                } catch (e: Throwable) {
+                    try {
+                        editorManager.currentWindow?.split(javax.swing.SwingConstants.VERTICAL, true, htmlVFile, true, false)
+                    } catch (e2: Throwable) {
+                        com.intellij.openapi.fileEditor.FileEditorManager.getInstance(project).openFile(htmlVFile, false)
+                    }
+                }
+            }
+            if (codeVFile != null) {
+                editorManager.openFile(codeVFile, true)
             }
         }
     }
@@ -102,12 +112,18 @@ private fun buildTemplate(problemNumber: String, title: String, langExt: String)
 //=====================================================================
 
 import java.util.*;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         
-        sc.close();
+        
+        bw.flush();
+        bw.close();
+        br.close();
     }
 }
 """.trimIndent()
@@ -122,6 +138,7 @@ public class Main {
 #=====================================================================
 
 import sys
+
 input = sys.stdin.readline
 
 """.trimIndent()

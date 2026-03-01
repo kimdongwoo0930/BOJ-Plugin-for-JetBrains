@@ -46,8 +46,9 @@ fun getProblemData(number: String): ProblemData? {
 
         var index = 1
         while (true) {
-            val input_ = doc.select("#sample-input-$index").first()?.text() ?: break
-            val output_ = doc.select("#sample-output-$index").first()?.text() ?: break
+            val input_ = doc.select("#sample-input-$index").first()?.wholeText() ?: break
+
+            val output_ = doc.select("#sample-output-$index").first()?.wholeText() ?: break
             if (input_.isEmpty() || output_.isEmpty()) break
 
             testCaseInputs.add(input_)

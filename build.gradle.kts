@@ -1,6 +1,7 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
 
 plugins {
     id("java") // Java support
@@ -157,6 +158,10 @@ intellijPlatformTesting {
             plugins {
                 robotServerPlugin()
             }
+        }
+        // PyCharm 테스트용 추가
+        register("runPyCharm") {
+            localPath = file("C:\\Program Files\\JetBrains\\PyCharm 2025.3.3")
         }
     }
 }

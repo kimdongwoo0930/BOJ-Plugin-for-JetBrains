@@ -61,8 +61,16 @@ fun reopenProblem(project: Project) {
         }
         if (htmlFile != null) {
             htmlFile.refresh(false, false)
-            val currentWindow = exEditorManager.currentWindow
-            currentWindow?.split(javax.swing.SwingConstants.VERTICAL, true, htmlFile, true)
+            try {
+                val currentWindow = exEditorManager.currentWindow
+                currentWindow?.split(javax.swing.SwingConstants.VERTICAL, true, htmlFile, true)
+            } catch (e: Throwable) {
+                try {
+                    exEditorManager.currentWindow?.split(javax.swing.SwingConstants.VERTICAL, true, htmlFile, true, false)
+                } catch (e2: Throwable) {
+                    com.intellij.openapi.fileEditor.FileEditorManager.getInstance(project).openFile(htmlFile, false)
+                }
+            }
         }
     }
 }

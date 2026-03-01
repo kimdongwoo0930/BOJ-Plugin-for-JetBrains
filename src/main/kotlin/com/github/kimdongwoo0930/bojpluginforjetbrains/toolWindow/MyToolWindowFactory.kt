@@ -4,6 +4,7 @@ import com.github.kimdongwoo0930.bojpluginforjetbrains.commands.checkTestCase
 import com.github.kimdongwoo0930.bojpluginforjetbrains.commands.getProblemByNumber
 import com.github.kimdongwoo0930.bojpluginforjetbrains.commands.previewProblem
 import com.github.kimdongwoo0930.bojpluginforjetbrains.commands.reopenProblem
+import com.github.kimdongwoo0930.bojpluginforjetbrains.commands.submitAnswer
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
@@ -75,7 +76,7 @@ class BOJToolWindow(private val project: Project) {
 
         // 제출 섹션
         add(sectionLabel("🚀 제출"))
-        add(actionButton("제출하기") { /* TODO */ })
+        add(actionButton("제출하기") { submitAnswer(project) })
         add(descLabel("코드를 백준에 제출"))
         add(Box.createVerticalStrut(24))
         add(divider())
