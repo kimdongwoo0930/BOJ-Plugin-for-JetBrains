@@ -57,27 +57,14 @@ fun makeFolder(
             val codeVFile = LocalFileSystem.getInstance().findFileByPath(
                 codeFile.absolutePath.replace("\\", "/")
             )
+            
 
-            val editorManager = com.intellij.openapi.fileEditor.ex.FileEditorManagerEx.getInstanceEx(project)
-
-            if (codeVFile != null) {
-                editorManager.openFile(codeVFile, true)
-            }
             if (htmlVFile != null) {
                 htmlVFile.refresh(false, false)
-                try {
-                    val currentWindow = editorManager.currentWindow
-                    currentWindow?.split(javax.swing.SwingConstants.VERTICAL, true, htmlVFile, true)
-                } catch (e: Throwable) {
-                    try {
-                        editorManager.currentWindow?.split(javax.swing.SwingConstants.VERTICAL, true, htmlVFile, true, false)
-                    } catch (e2: Throwable) {
-                        com.intellij.openapi.fileEditor.FileEditorManager.getInstance(project).openFile(htmlVFile, false)
-                    }
-                }
+                com.intellij.openapi.fileEditor.FileEditorManager.getInstance(project).openFile(htmlVFile, false)
             }
             if (codeVFile != null) {
-                editorManager.openFile(codeVFile, true)
+                com.intellij.openapi.fileEditor.FileEditorManager.getInstance(project).openFile(codeVFile, true)
             }
         }
     }

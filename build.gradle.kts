@@ -132,6 +132,10 @@ kover {
 }
 
 tasks {
+    buildSearchableOptions {
+        enabled = false
+    }
+
     wrapper {
         gradleVersion = providers.gradleProperty("gradleVersion").get()
     }

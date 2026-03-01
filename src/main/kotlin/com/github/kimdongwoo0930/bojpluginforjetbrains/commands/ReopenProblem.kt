@@ -2,7 +2,6 @@ package com.github.kimdongwoo0930.bojpluginforjetbrains.commands
 
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.fileEditor.FileEditorManager
-import com.intellij.openapi.fileEditor.ex.FileEditorManagerEx
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages
 
@@ -54,23 +53,13 @@ fun reopenProblem(project: Project) {
 
     // 분할 창으로 열기
     ApplicationManager.getApplication().invokeLater {
-        val exEditorManager = FileEditorManagerEx.getInstanceEx(project)
 
         if (codeFile != null) {
-            exEditorManager.openFile(codeFile, true)
+            FileEditorManager.getInstance(project).openFile(codeFile, true)
         }
         if (htmlFile != null) {
             htmlFile.refresh(false, false)
-            try {
-                val currentWindow = exEditorManager.currentWindow
-                currentWindow?.split(javax.swing.SwingConstants.VERTICAL, true, htmlFile, true)
-            } catch (e: Throwable) {
-                try {
-                    exEditorManager.currentWindow?.split(javax.swing.SwingConstants.VERTICAL, true, htmlFile, true, false)
-                } catch (e2: Throwable) {
-                    com.intellij.openapi.fileEditor.FileEditorManager.getInstance(project).openFile(htmlFile, false)
-                }
-            }
+            FileEditorManager.getInstance(project).openFile(htmlFile, false)
         }
     }
 }

@@ -2,7 +2,7 @@
     <id>com.github.kimdongwoo0930.bojpluginforjetbrains</id>
     <name>BOJ Assistant</name>
     <vendor url="https://github.com/kimdongwoo0930">kimdongwoo0930</vendor>
-    <description>백준 온라인 저지(BOJ)를 JetBrains IDE에서 사용할 수 있는 플러그인</description>
+    <description>BOJ Assistant helps you solve Baekjoon Online Judge problems directly within JetBrains IDEs. Create problem folders, view problems, run tests, and submit your code without leaving the IDE.</description>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
@@ -12,7 +12,8 @@
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow.MyToolWindowFactory"
                     id="BOJ"
-                    anchor="left"/>
+                    anchor="left"
+                    icon="/icons/icon.svg"/>
         <fileEditorProvider implementation="com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow.ProblemViewerProvider"/>
         <postStartupActivity implementation="com.github.kimdongwoo0930.bojpluginforjetbrains.startup.MyProjectActivity" />
     </extensions>

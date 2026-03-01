@@ -1,15 +1,15 @@
 # BOJ Assistant for JetBrains
 
-[![JetBrains Marketplace](https://img.shields.io/jetbrains/plugin/v/YOUR_PLUGIN_ID?label=Marketplace)](https://plugins.jetbrains.com/plugin/YOUR_PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/YOUR_PLUGIN_ID)](https://plugins.jetbrains.com/plugin/YOUR_PLUGIN_ID)
+[![Get from Marketplace](https://img.shields.io/badge/JetBrains_Marketplace-BOJ_Assistant-orange)](https://plugins.jetbrains.com/plugin/30420)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/30420)](https://plugins.jetbrains.com/plugin/30420)
 [![Language](https://img.shields.io/badge/language-Kotlin-purple)]()
 [![License](https://img.shields.io/badge/license-MIT-green)]()</p>
 
-<!-- Plugin description -->
-BOJ Assistant for JetBrains는
 
-> IntelliJ IDEA / PyCharm 내부에서 백준 문제 생성, 테스트, 제출을 자동화하여  
-> 알고리즘 학습 생산성을 극대화하는 플러그인입니다.
+<!-- Plugin description -->
+BOJ Assistant is a plugin that automates solving Baekjoon Online Judge (BOJ) problems directly within IntelliJ IDEA and PyCharm.
+
+> 백준 문제 생성, 테스트, 제출을 IDE 내부에서 한 번에 처리할 수 있습니다.
 
 ## ✨ Core Features
 
