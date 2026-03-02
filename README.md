@@ -63,9 +63,9 @@ VSCode 버전([BOJ Extension for VSCode](https://marketplace.visualstudio.com/it
 
 > 설치 후 사이드바에서 BOJ Assistant를 실행하면 아래와 같은 GUI가 나타납니다.
 
-<p align="center">
-  <img src="img.png" width="650"/>
-</p>
+
+![스크린샷 2026-03-02 181836.png](src/main/resources/image/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-03-02%20181836.png)
+![스크린샷 2026-03-02 181858.png](src/main/resources/image/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-03-02%20181858.png)
 
 ---
 
