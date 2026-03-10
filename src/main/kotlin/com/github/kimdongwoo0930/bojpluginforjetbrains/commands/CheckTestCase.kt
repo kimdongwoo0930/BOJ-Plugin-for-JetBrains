@@ -11,6 +11,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.execution.filters.TextConsoleBuilderFactory
+import com.intellij.openapi.roots.ProjectRootManager
 import java.io.File
 
 /**
@@ -102,7 +103,8 @@ fun checkTestCase(project: Project) {
                     input = problemData.testCaseInputs[i],
                     expectedOutput = problemData.testCaseOutputs[i],
                     index = i,
-                    consoleView = consoleView
+                    consoleView = consoleView,
+                    project = project,
                 )
                 if (result) passCount++
             }
@@ -133,7 +135,8 @@ private fun runTestCase(
     input: String,
     expectedOutput: String,
     index: Int,
-    consoleView: com.intellij.execution.ui.ConsoleView
+    consoleView: com.intellij.execution.ui.ConsoleView,
+    project: Project
 ): Boolean {
     val cwd = File(filePath).parent
     val isWin = System.getProperty("os.name").lowercase().contains("win")
@@ -179,8 +182,8 @@ private fun runTestCase(
             }
 
             "py" -> {
-                val py = if (isWin) "python" else "python3"
-                ProcessBuilder(py, filePath)
+                val pythonPath = getPythonPath(project)
+                ProcessBuilder(pythonPath, filePath)
                     .directory(File(cwd))
                     .redirectErrorStream(false)
                     .start()
@@ -246,4 +249,31 @@ private fun runTestCase(
         )
         false
     }
+}
+
+private fun getPythonPath(project: Project): String {
+    val isWin = System.getProperty("os.name").lowercase().contains("win")
+
+    val sdkHome = ProjectRootManager.getInstance(project).projectSdk?.homePath
+    if (sdkHome != null) {
+        val candidates = if (isWin) listOf(
+            "$sdkHome\\Scripts\\python.exe",
+            "$sdkHome\\python.exe"
+        ) else listOf(
+            "$sdkHome/bin/python3",
+            "$sdkHome/bin/python"
+        )
+        candidates.firstOrNull { File(it).exists() }?.let { return it }
+    }
+
+    val candidates = if (isWin) listOf("python", "py", "python3")
+    else listOf("python3", "python")
+
+    for (cmd in candidates) {
+        try {
+            val result = ProcessBuilder(cmd, "--version").start().waitFor()
+            if (result == 0) return cmd
+        } catch (e: Exception) { continue }
+    }
+    return "python"
 }
