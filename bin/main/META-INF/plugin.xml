@@ -1,0 +1,28 @@
+<idea-plugin>
+    <id>com.github.kimdongwoo0930.bojpluginforjetbrains</id>
+    <name>BOJ Assistant</name>
+    <idea-version since-build="232" until-build="999.*"/>
+    <vendor url="https://github.com/kimdongwoo0930">kimdongwoo0930</vendor>
+    <description>BOJ Assistant helps you solve Baekjoon Online Judge problems directly within JetBrains IDEs. Create problem folders, view problems, run tests, and submit your code without leaving the IDE.</description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+
+    <resource-bundle>messages.MyBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow factoryClass="com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow.MyToolWindowFactory"
+                    id="BOJ"
+                    anchor="left"
+                    icon="/icons/icon.svg"/>
+        <fileEditorProvider implementation="com.github.kimdongwoo0930.bojpluginforjetbrains.toolWindow.ProblemViewerProvider"/>
+        <postStartupActivity implementation="com.github.kimdongwoo0930.bojpluginforjetbrains.startup.MyProjectActivity" />
+    </extensions>
+    <incompatible-with>com.intellij.modules.rider</incompatible-with>
+    <incompatible-with>com.intellij.modules.clion</incompatible-with>
+    <incompatible-with>com.intellij.modules.webstorm</incompatible-with>
+    <incompatible-with>com.intellij.modules.goland</incompatible-with>
+    <incompatible-with>com.intellij.modules.dataspell</incompatible-with>
+    <incompatible-with>com.intellij.modules.rubymine</incompatible-with>
+    <incompatible-with>com.intellij.modules.appcode</incompatible-with>
+</idea-plugin>
