@@ -36,7 +36,7 @@ dependencies {
     testImplementation(libs.opentest4j)
 
     // Jsoup - HTML 파싱 (백준 스크래핑용)
-    implementation("org.jsoup:jsoup:1.17.2")
+    implementation("org.jsoup:jsoup:1.22.1")
 
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
     intellijPlatform {
